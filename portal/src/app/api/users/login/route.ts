@@ -83,7 +83,7 @@ interface LoginRequestBody {
 }
 
 export async function POST(request: NextRequest) {
-  const TOKEN_SECRET = 'Secret_Key'; 
+  const TOKEN_SECRET = new TextEncoder().encode('Secret_Key');
   
   try {
     // Parse the request body with a defined type

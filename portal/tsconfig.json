@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/DashBoard/page.jsx", "src/app/components/Attentance/page.jsx", "src/app/components/NavBar/page.jsx", "src/app/components/ManagerEmployee/page.jsx", "src/app/components/LeaveCart/page.jsx", "src/app/components/LeaveCalendorView/page.jsx", "src/app/components/LeaveApplyPage/page.jsx", "src/app/components/HREmployeeConnection/page.jsx", "src/app/components/HRApprovel/page.jsx", "src/app/components/FileUpload/page.jsx", "src/app/components/ExpenseDecline/page.jsx", "src/app/components/ExpenseApply/page.jsx", "src/app/components/EmployeeExpense/page.jsx", "src/app/components/SideBar/page.jsx", "src/app/components/ShiftMangement/page.jsx", "src/models/UserModel.ts", "src/app/profile/page.jsx", "src/app/signup/page.jsx", "src/app/login/page.jsx", "src/app/page.jsx"],
+  "exclude": ["node_modules"]
+}

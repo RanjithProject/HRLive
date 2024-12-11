@@ -16,7 +16,7 @@
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server"; // Import Next.js Request type
 
-const TOKEN_SECRET = process.env.TOKEN_SECRET || 'Secret_Key'; // Use environment variable
+const TOKEN_SECRET = new TextEncoder().encode('Secret_Key');// Use environment variable
 
 interface JwtPayload {
     id: string; // Define the structure of the payload (ensure 'id' is always present)

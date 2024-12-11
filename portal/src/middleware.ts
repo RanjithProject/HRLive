@@ -121,7 +121,7 @@ interface JwtPayload {
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     const token = request.cookies.get('token')?.value || '';
-    const TOKEN_SECRET = new TextEncoder().encode(process.env.TOKEN_SECRET || 'Secret_Key');
+    const TOKEN_SECRET = new TextEncoder().encode('Secret_Key');
 
     console.log(typeof token);
 

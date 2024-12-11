@@ -1,18 +1,3 @@
-// import jwt from "jsonwebtoken";
-
-// const TOKEN_SECRET = process.env.TOKEN_SECRET || 'Secret_Key'; 
-
-// export async function getDataFromToken(request) {
-//     const token = request.cookies.get('token')?.value;
-//     if (!token) throw new Error('No token provided');
-
-//     const decoded = jwt.verify(token, TOKEN_SECRET);
-//     return decoded.id; // Return user ID from token
-// }
-
-
-
-
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server"; // Import Next.js Request type
 

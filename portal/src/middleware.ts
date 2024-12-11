@@ -121,7 +121,8 @@ interface JwtPayload {
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     const token = request.cookies.get('token')?.value || '';
-    const TOKEN_SECRET = new TextEncoder().encode('Secret_Key');
+    const TOKEN_SECRET ='Secret_Key';
+     const secretKey = new TextEncoder().encode(TOKEN_SECRET);
 
     console.log(typeof token);
 
@@ -131,7 +132,7 @@ export async function middleware(request: NextRequest) {
     // Verify and decode the token if it exists
     if (token) {
         try {
-            const decoded = await jwtVerify(token, TOKEN_SECRET); // Decode the JWT token
+            const decoded = await jwtVerify(token, secretKey); // Decode the JWT token
 
             // Safely cast decoded.payload to the expected JwtPayload type
             const payload = decoded.payload as unknown as JwtPayload;

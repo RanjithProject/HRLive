@@ -15,7 +15,6 @@ const LeaveStatusPage = () => {
       setError("Employee ID is required");
       return;
     }
-
     // Fetch leave status from the backend API
     const fetchLeaveStatus = async () => {
       setLoading(true); // Start loading

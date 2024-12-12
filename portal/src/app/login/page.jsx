@@ -200,7 +200,7 @@ export default function LoginPage() {
       // localStorage.setItem("token", token); // or use cookies
 
       // Redirect based on the user role
-      const redirectPath = userRole === "employee" ? '/components/Attentance' : '/components/Attentance';
+      const redirectPath = userRole === "employee" ? '/pages/Attentance' : '/pages/Attentance';
       router.push(redirectPath);
     } catch (error) {
       console.log("Login failed", error);

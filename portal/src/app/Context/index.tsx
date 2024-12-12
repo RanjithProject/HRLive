@@ -129,7 +129,8 @@ export function AppWrapper({ children }: AppWrapperProps) {
     fetchUserDetails();
   }, []);
 
-  const API = "https://hrprojectlive-server.onrender.com";
+  // const API = "https://hrprojectlive-server.onrender.com";
+  const API="http://localhost:4000";
 
   return (
     <AppContext.Provider value={{ employeeId, userName, updateUserDetails, userEmail, userRole, managerEmail, managerId, API }}>

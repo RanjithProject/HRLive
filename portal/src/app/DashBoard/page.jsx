@@ -1,17 +1,17 @@
 
 'use client';
 import React, { useState } from 'react';
-// import Attendance from '../components/Attendance/page';
-import Attendance from '../components/Attentance/page';
-import LeaveApplyPage from '../components/LeaveApplyPage/page';
-import ManagerEmployee from '../components/ManagerEmployee/page';
-// import HRApproval from "../components/HRApproval/page";
-import HRApproval from "../components/HRApprovel/page";
-// import ShiftManagement from '../components/ShiftManagement/page';
-// import ExpenseManager from '../components/ExpenseDecline';
+// import Attendance from '../pages/Attendance/page';
+import Attendance from '../pages/Attentance/page';
+import LeaveApplyPage from '../pages/LeaveApplyPage/page';
+import ManagerEmployee from '../pages/ManagerEmployee/page';
+// import HRApproval from "../pages/HRApproval/page";
+import HRApproval from "../pages/HRApprovel/page";
+// import ShiftManagement from '../pages/ShiftManagement/page';
+// import ExpenseManager from '../pages/ExpenseDecline';
 
-import ShiftMangement from '../components/ShiftMangement/page';
-import ExpenseDecline from '../components/ExpenseDecline/page';
+import ShiftMangement from '../pages/ShiftMangement/page';
+import ExpenseDecline from '../pages/ExpenseDecline/page';
 
 const DashBoard = () => {
   const [click, setClick] = useState('attendance');

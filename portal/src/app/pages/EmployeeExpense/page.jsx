@@ -6,15 +6,18 @@ import React, { useState, useEffect } from 'react';
 
 const ExpenseManager = () => {
   const [expenses, setExpenses] = useState([]);
-  const { employeeId, API } = useAppContext(); // Get the employeeId from context
+  const { employeeId} = useAppContext(); // Get the employeeId from context
   console.log("Employee ID: ", employeeId);
+
+  
+  
 
   // Fetch the list of expenses based on employeeId
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        // Make the API call with employeeId
-        const response = await axios.get(API + `/getAll/expenses/employeeId?employeeId=${employeeId}`);
+        // Make the process.env.APIS call with employeeId
+        const response = await axios.get(process.env.APIS + `/getAll/expenses/employeeId?employeeId=${employeeId}`);
         
         // Check if there are expenses
         if (response.data.success) {
@@ -31,7 +34,7 @@ const ExpenseManager = () => {
     if (employeeId) {
       fetchExpenses(); // Only fetch if employeeId is available
     }
-  }, [employeeId,API]); // Run this effect when employeeId changes
+  }, [employeeId,process.env.APIS]); // Run this effect when employeeId changes
   console.log(expenses);
 
   return (
@@ -82,7 +85,7 @@ const ExpenseManager = () => {
 const downloadFile = async (filename) => {
   try {
     const response = await axios({
-      url: `http://localhost:4000/files/${filename}`,  // Adjust URL as needed
+      url: process.env.APIS+`/files/${filename}`,  // Adjust URL as needed
       method: 'GET',
       responseType: 'blob', 
     });

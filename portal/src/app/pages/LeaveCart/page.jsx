@@ -43,11 +43,11 @@ export default function LeaveRequestsPage() {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   // Fetch the leave requests for today
   const fetchLeaveRequests = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/todayLeaveApplications");
+      const response = await axios.get(process.env.APIS+"/todayLeaveApplications");
       if (response.data.success) {
         setLeaveRequests(response.data.data); // Set the data directly from the API response
       } else {

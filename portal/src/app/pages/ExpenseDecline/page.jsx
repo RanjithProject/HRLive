@@ -8,7 +8,7 @@ const ExpenseDecline = () => {
   const [expenses, setExpenses] = useState([]);
   const [status, setStatus] = useState("");
   const [managerReason, setManagerReason] = useState("");
-  const { userEmail, employeeId,API } = useAppContext();
+  const { userEmail, employeeId } = useAppContext();
 
   console.log("userEmail:", userEmail, " employeeId:", employeeId);
 
@@ -16,14 +16,14 @@ const ExpenseDecline = () => {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const response = await axios.get(API+`/get-files?managerId=${employeeId}`);
+        const response = await axios.get(process.env.APIS+`/get-files?managerId=${employeeId}`);
         setExpenses(response.data.files);
       } catch (error) {
         console.log("Error fetching expenses:", error);
       }
     };
     fetchExpenses();
-  }, [employeeId,API]);
+  }, [employeeId]);
 
   // Handle status update and manager reason submission
   const handleUpdateStatus = async (expenseId) => {
@@ -39,7 +39,7 @@ const ExpenseDecline = () => {
     }
 
     try {
-      const response = await axios.put(API+`/update-expense/${expenseId}`, {
+      const response = await axios.put(process.env.APIS+`/update-expense/${expenseId}`, {
         expenseId,
         status,
         reason: managerReason,
@@ -75,7 +75,7 @@ const ExpenseDecline = () => {
   const downloadFile = async (filename) => {
     try {
       const response = await axios({
-        url: `http://localhost:4000/files/${filename}`,
+        url: process.env.APIS+`/files/${filename}`,
         method: "GET",
         responseType: "blob", // Download as blob
       });

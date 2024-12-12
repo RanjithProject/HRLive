@@ -1,5 +1,5 @@
 'use client';
-import { useAppContext } from '@/app/Context';
+// import { useAppContext } from '@/app/Context';
 import axios from 'axios';
 import React, { useState} from 'react';
 
@@ -14,7 +14,7 @@ const ExpenseUpload = () => {
   const [expenseType, setExpenseType] = useState('');
   const [file, setFile] = useState(null);
   const [uploadedExpenses, setUploadedExpenses] = useState([]);
-  const {API}=useAppContext();
+ 
 
   // Handle expense submission
   const submitExpense = async (e) => {
@@ -33,7 +33,7 @@ const ExpenseUpload = () => {
       formData.append('file', file);
 
       // Send POST request with expense data
-      const result = await axios.post(API+"/upload-expense", formData, {
+      const result = await axios.post(process.env.APIS+"/upload-expense", formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

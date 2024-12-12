@@ -4,8 +4,8 @@ import { useAppContext } from '@/app/Context';
 import axios from 'axios';
 
 const LeaveApplyPage = () => {
-  const { userName, employeeId,API } = useAppContext();
-
+  const { userName, employeeId } = useAppContext();
+  console.log("env file : ",process.env.APIS);
   const [leaveType, setLeaveType] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -40,7 +40,7 @@ const LeaveApplyPage = () => {
     setDateError(''); // Clear the error if dates are valid
 
     try {
-      const response = await axios.post(API+'/api/leave/request', {
+      const response = await axios.post(process.env.APIS+'/api/leave/request', {
         name: userName,
         employeeId,
         leaveType,

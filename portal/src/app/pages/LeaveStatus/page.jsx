@@ -4,7 +4,7 @@ import axios from "axios";
 import { useAppContext } from "@/app/Context";
 
 const LeaveStatusPage = () => {
-  const { employeeId,API } = useAppContext(); // Get employeeId from context
+  const { employeeId } = useAppContext(); // Get employeeId from context
   const [leaveStatus, setLeaveStatus] = useState(null); // State to store leave status data
   const [error, setError] = useState(null); // State to store error message
   const [loading, setLoading] = useState(false); // State to handle loading
@@ -23,7 +23,7 @@ const LeaveStatusPage = () => {
 
       try {
         // Send request to the API to get leave status
-        const response = await axios.get(API+`/api/employee/leavestatus?employeeId=${employeeId}`);
+        const response = await axios.get(process.env.APIS+`/api/employee/leavestatus?employeeId=${employeeId}`);
 
         setLeaveStatus(response.data.data);
       } catch (error) {
@@ -36,7 +36,7 @@ const LeaveStatusPage = () => {
 
     fetchLeaveStatus(); 
 
-  }, [employeeId,API]); // Dependency array ensures it runs whenever employeeId changes
+  }, [employeeId,process.env.APIS]); // Dependency array ensures it runs whenever employeeId changes
 
 
   console.log(leaveStatus);

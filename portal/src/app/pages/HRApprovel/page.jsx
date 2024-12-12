@@ -7,14 +7,14 @@ const TodayLeaveApplications = () => {
   const [leaveData, setLeaveData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { userRole, employeeId,API } = useAppContext(); // Get manager"s employeeId from context
+  const { userRole, employeeId} = useAppContext(); // Get manager"s employeeId from context
 
   // Fetch today"s leave applications on component mount
   useEffect(() => {
     const fetchLeaveData = async () => {
       try {
         // Sending managerId as part of the URL params
-        const response = await axios.get(API+`/api/todayLeaveApplications/${employeeId}`);
+        const response = await axios.get(process.env.APIS+`/api/todayLeaveApplications/${employeeId}`);
         
         if (response.data.success) {
           setLeaveData(response.data.data);  // Store the fetched leave data
@@ -29,12 +29,12 @@ const TodayLeaveApplications = () => {
     };
 
     fetchLeaveData();
-  }, [employeeId,API]); // Ensure data is fetched when the component mounts or when employeeId changes
+  }, [employeeId,process.env.APIS]); // Ensure data is fetched when the component mounts or when employeeId changes
 
   // Handle leave status change
   const handleLeaveStatusChange = async (employeeId, leaveId, newStatus) => {
     try {
-      const response = await axios.patch(API+`/api/updateLeaveStatus/${employeeId}/${leaveId}`, { 
+      const response = await axios.patch(process.env.APIS+`/api/updateLeaveStatus/${employeeId}/${leaveId}`, { 
         leaveStatus: newStatus, 
         approvedByRole: userRole  // Send manager"s role for approval/rejection
       });

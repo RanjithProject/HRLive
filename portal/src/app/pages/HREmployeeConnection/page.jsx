@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const HREmployeeConnection = () => {
-  const { employeeId, userEmail,API } = useAppContext();
+  const { employeeId, userEmail} = useAppContext();
 
   console.log(employeeId);
   console.log(userEmail);
@@ -23,7 +23,7 @@ const HREmployeeConnection = () => {
 
     try {
       const response = await axios.put(
-        API+"/hr/update-employee",
+        process.env.APIS+"/hr/update-employee",
         {
             hrId: employeeId,  // Assuming 'employeeId' is the HR's ID
             hrEmail: userEmail, // Assuming 'userEmail' is the HR's email

@@ -2,7 +2,6 @@
 
 'use client';
 
-import { useAppContext } from '@/app/Context';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
@@ -10,19 +9,19 @@ const FileUpload = () => {
   const [title, setTitle] = useState('');
   const [file, setFile] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
-const {API}=useAppContext();
+
   // Fetch list of uploaded files
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await axios.get(API+'/get-files');
+        const response = await axios.get(process.env.APIS+'/get-files');
         setUploadedFiles(response.data.files);
       } catch (error) {
         console.log("Error fetching files:", error);
       }
     };
     fetchFiles();
-  }, [API]);
+  }, [process.env.APIS]);
 
   // Handle file submission
   const submitImage = async (e) => {
@@ -38,7 +37,7 @@ const {API}=useAppContext();
       console.log("File: ", file);
 
       // Send POST request with file data
-      const result = await axios.post(API+"/upload-files", formData, {
+      const result = await axios.post(process.env.APIS+"/upload-files", formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -54,7 +53,7 @@ const {API}=useAppContext();
   const downloadFile = async (filename) => {
     try {
       const response = await axios({
-        url: `http://localhost:4000/files/${filename}`,
+        url: process.env.APIS+`/files/${filename}`,
         method: 'GET',
         responseType: 'blob', // Important for downloading files
       });

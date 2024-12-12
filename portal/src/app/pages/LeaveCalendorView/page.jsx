@@ -14,7 +14,7 @@ export default function LeaveCalendarView() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [leaveStatus, setLeaveStatus] = useState(null);
 
-  const { employeeId,API } = useAppContext(); 
+  const { employeeId} = useAppContext(); 
   const DaysInMonth = () => {
     const daysArray = [];
     const firstDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
@@ -35,7 +35,7 @@ export default function LeaveCalendarView() {
   
         try {
           // Send request to the API to get leave status
-          const response = await axios.get(API+`/api/employee/leavestatus?employeeId=${employeeId}`);
+          const response = await axios.get(process.env.APIS+`/api/employee/leavestatus?employeeId=${employeeId}`);
   console.log(response.data);
   
           setLeaveStatus(response.data.data);

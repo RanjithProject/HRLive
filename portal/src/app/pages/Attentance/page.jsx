@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useState, useEffect,useCallback } from 'react';
 
 const Attendance = () => {
-  const { userName , API } = useAppContext();
+  const { userName  } = useAppContext();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [loginOut, setLoginOut] = useState('Sign Out');
   const [breakStatus, setBreakStatus] = useState('Break Out');
@@ -20,7 +20,7 @@ const Attendance = () => {
 
   const fetchLoginHistory = useCallback(async () => {
     try {
-      const response = await axios.get(API + '/api/login-history', {
+      const response = await axios.get(process.env.APIS+'/api/login-history', {
         params: { username: userName },
       });
       const data = response.data;
@@ -112,7 +112,7 @@ const Attendance = () => {
     } catch (error) {
       console.log("server error: ", error);
     }
-  }, [userName, API, totalBreakTime]); // Note: We need to add totalBreakTime here if we are using it in the calculation.
+  }, [userName, totalBreakTime]); // Note: We need to add totalBreakTime here if we are using it in the calculation.
   
 
 
@@ -120,14 +120,14 @@ const Attendance = () => {
 // Inside your component
 const fetchShiftDetails = useCallback(async () => {
   try {
-    const response = await axios.get(API + '/api/shift-details', {
+    const response = await axios.get(process.env.APIS+ '/api/shift-details', {
       params: { username: userName },
     });
     setShiftStartTime(response.data.shiftStartTime); // Store the shift start time
   } catch (error) {
     console.log("server error: ", error);
   }
-}, [userName, API]); // Add dependencies
+}, [userName]); // Add dependencies
 
 
   //   const fetchShiftDetails = async () => {
@@ -197,7 +197,7 @@ const fetchShiftDetails = useCallback(async () => {
       }
     
       try {
-        await axios.patch(API+'/api/login', {
+        await axios.patch(process.env.APIS+'/api/login', {
           action: newState,
           username: userName,
           timestamp: new Date().toISOString(),
@@ -222,7 +222,7 @@ const fetchShiftDetails = useCallback(async () => {
     const newStatus = breakStatus === 'Break Out' ? 'Break In' : 'Break Out'; // Toggle between 'Break In' and 'Break Out'
 
     try {
-      await axios.patch(API+'/api/break', {
+      await axios.patch(process.env.APIS+'/api/break', {
         username: userName,
         status: newStatus,
         timestamp: new Date().toISOString(),

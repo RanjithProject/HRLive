@@ -2,20 +2,20 @@
 'use client';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppContext } from "@/app/Context";
+// import { useAppContext } from "@/app/Context";
 
 export default function ShiftMangement() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedShift, setSelectedShift] = useState({});
   const [error, setError] = useState("");
-const {API}=useAppContext();
+// const {API}=useAppContext();
 
   // Fetch employees data on page load using Axios
   useEffect(() => {
     async function fetchEmployees() {
       try {
-        const response = await axios.get(API+"/api/getAllEmployees");
+        const response = await axios.get(process.env.APIS+"/api/getAllEmployees");
         if (response.data.success) {
           // Filter employees with 'userrole' as 'employee'
           const filteredEmployees = response.data.data.filter(
@@ -33,12 +33,12 @@ const {API}=useAppContext();
     }
 
     fetchEmployees();
-  }, [API]);
+  }, [process.env.APIS]);
 
   // Handle shift change using Axios
   const handleShiftChange = async (employeeId, shiftType) => {
     try {
-      const response = await axios.put(API+"/api/changeEmployeeShift", {
+      const response = await axios.put(process.env.APIS+"/api/changeEmployeeShift", {
         employeeId,
         shiftType
       });

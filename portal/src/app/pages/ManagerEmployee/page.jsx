@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const ManagerEmployee = () => {
-  const { employeeId, userEmail,API } = useAppContext();
+  const { employeeId, userEmail } = useAppContext();
 
   console.log(employeeId);
   console.log(userEmail);
@@ -24,7 +24,7 @@ const ManagerEmployee = () => {
 
     try {
       const response = await axios.put(
-        API+"/manager/update-employee",
+        process.env.APIS+"/manager/update-employee",
         {
           managerId: employeeId,  // Assuming 'employeeId' is the manager's ID
           managerEmail: userEmail, // Assuming 'userEmail' is the manager's email

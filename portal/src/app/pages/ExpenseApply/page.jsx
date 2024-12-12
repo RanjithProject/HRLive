@@ -1,5 +1,5 @@
 'use client';
-// import { useAppContext } from '@/app/Context';
+import { useAppContext } from '@/app/Context';
 import axios from 'axios';
 import React, { useState} from 'react';
 
@@ -14,7 +14,7 @@ const ExpenseUpload = () => {
   const [expenseType, setExpenseType] = useState('');
   const [file, setFile] = useState(null);
   const [uploadedExpenses, setUploadedExpenses] = useState([]);
- 
+  
 
   // Handle expense submission
   const submitExpense = async (e) => {
